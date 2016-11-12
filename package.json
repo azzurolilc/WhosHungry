@@ -8,7 +8,6 @@
   },
   "dependencies": {
     "lodash": "^4.16.6",
-    "mongo": "^0.1.0",
     "react": "15.3.2",
     "react-native": "0.37.0",
     "react-native-maps": "^0.11.0"

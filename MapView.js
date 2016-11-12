@@ -16,7 +16,6 @@ import {
   View
 } from 'react-native';
 
-var Homepage = require('./Homepage');
 var ReactNative = require('react-native');
 
 function urlForQueryAndPage(key, value, pageNumber) {
@@ -38,7 +37,7 @@ function urlForQueryAndPage(key, value, pageNumber) {
 };
 
 
-class Registration extends React.Component {
+class MapView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -101,35 +100,12 @@ class Registration extends React.Component {
       });
   }
 
-  goToHomepage() {
-    this.props.navigator.replace({
-        title: 'Homepage',
-        component: Homepage
-      });
-  }
-
   render() {
     return (
       <View style={styles.container}>
         <Text style={styles.description}>
-          Log In To Get Food!
+          Map ~
         </Text>
-        <View style={styles.flowRight}>
-          <TextInput
-            style={styles.searchInput}
-            placeholder='User Name'/>
-          <TextInput
-            style={styles.searchInput}
-            placeholder='Password'/>
-          <TouchableHighlight style={styles.button}
-              underlayColor='#99d9f4'>
-            <Text
-              style={styles.buttonText}
-              onPress={this.goToHomepage.bind(this)}>
-              Go
-            </Text>
-          </TouchableHighlight>
-        </View>
       </View>
     );
   }
@@ -186,4 +162,4 @@ var styles = StyleSheet.create({
   }
 });
 
-module.exports = Registration;
+module.exports = MapView;

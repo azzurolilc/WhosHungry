@@ -23,7 +23,7 @@ import {
 var MapView = require('./MapCheck');
 var ReactNative = require('react-native');
 var ChooseType = require('./share/ChooseType');
-var ChooseType = require('./PropertyView');
+var PropertyView = require('./PropertyView');
 
 class Homepage extends React.Component {
   constructor(props) {

@@ -22,6 +22,7 @@ import {
 
 var MapView = require('./MapView');
 var ReactNative = require('react-native');
+var ChooseType = require('./share/ChooseType');
 
 class Homepage extends React.Component {
   constructor(props) {
@@ -62,6 +63,13 @@ class Homepage extends React.Component {
       });
   }
 
+  goToChooseType() {
+    this.props.navigator.push({
+        title: 'Provide Food',
+        component: ChooseType
+      });
+  }
+
   render() {
     var _scrollView: ScrollView;
     return (
@@ -77,14 +85,14 @@ class Homepage extends React.Component {
         <View>
           <TouchableOpacity
             style={styles.buttonProvide}
-            onPress={() => { _scrollView.scrollTo({y: 0}); }}>
+            onPress={this.goToChooseType.bind(this)}>
             <Text>Provide Food?</Text>
           </TouchableOpacity>
         </View>
         <View>
           <TouchableOpacity
             style={styles.buttonEat}
-            onPress={() => { _scrollView.scrollTo({y: 0}); }}>
+            onPress={this.goToMapView.bind(this)}>
             <Text>Eat!</Text>
           </TouchableOpacity>
         </View>

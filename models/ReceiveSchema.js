@@ -1,8 +1,9 @@
-var mongoose = require('mongoose')
+var mongoose = require('mongoose'),
+    Schema = mongoose.Schema;
 
 var receiveSchema = mongoose.Schema({
-  receriverId: Schema.Types.ObjectId
-  itemId: Schema.Types.ObjectId,
+  receriverId: Schema.ObjectId
+  itemId: Schema.ObjectId,
   count: Number,
   timeStamp: {
     type:Date,
@@ -10,3 +11,4 @@ var receiveSchema = mongoose.Schema({
   },
   completed: Boolean,
 })
+module.exports = mongoose.model('receive', receiveSchema);

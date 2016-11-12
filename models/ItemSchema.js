@@ -1,8 +1,9 @@
-var mongoose = require('mongoose');
+var mongoose = require('mongoose'),
+    Schema = mongoose.Schema;
 
 var itemSchema = mongoose.Schema({
   name: String,
-  photo: Schema.Types.ObjectId,
+  photo: Schema.ObjectId,
   amount: {
     number: Number,
     unit: String
@@ -11,7 +12,7 @@ var itemSchema = mongoose.Schema({
   created: {
     type:Date,
     default: Date.now
-  }
+  },
   expiration: Date,
   location:{
     address:{
@@ -21,7 +22,7 @@ var itemSchema = mongoose.Schema({
           trim:true,
           uppercase:true,
           default: "US"
-        }
+        },
         state: String,
         city: String,
         street1: String,
@@ -30,6 +31,8 @@ var itemSchema = mongoose.Schema({
     }
     lon:Number,
     lat:Number
-  }
-  userId: Schema.Types.ObjectId
+  },
+  userId: Schema.ObjectId
 })
+
+module.exports = mongoose.model('item', itemSchema);

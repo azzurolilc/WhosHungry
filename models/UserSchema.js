@@ -1,4 +1,5 @@
-var mongoose = require('mongoose');
+var mongoose = require('mongoose'),
+    Schema = mongoose.Schema;
 
 var userSchema = mongoose.Schema({
   name: String,
@@ -27,3 +28,5 @@ var userSchema = mongoose.Schema({
     default: Date.now
   }
 })
+
+module.exports = mongoose.model('user', userSchema);

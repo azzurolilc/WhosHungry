@@ -20,7 +20,7 @@ import {
   View
 } from 'react-native';
 
-var MapView = require('./MapView');
+var MapView = require('./MapCheck');
 var ReactNative = require('react-native');
 var ChooseType = require('./share/ChooseType');
 

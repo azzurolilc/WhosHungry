@@ -110,25 +110,42 @@ class NewUser extends React.Component {
     return (
       <View style={styles.container}>
         <Text style={styles.description}>
-          Register with your email address ~
+          Register New User with your email ~
+        </Text>
+        <Text style={styles.normal}>
+          email address
         </Text>
         <View style={styles.flowRight}>
           <TextInput
             style={styles.searchInput}
             placeholder='User Name'/>
+        </View>
+        <Text style={styles.normal}>
+          password
+        </Text>
+        <View style={styles.flowRight}>
           <TextInput
             secureTextEntry={true}
             style={styles.passwordInput}
             placeholder='Password'/>
-          <TouchableHighlight style={styles.button}
+        </View>
+        <Text style={styles.normal}>
+          retype password
+        </Text>
+        <View style={styles.flowRight}>
+          <TextInput
+            secureTextEntry={true}
+            style={styles.passwordInput}
+            placeholder='Password'/>
+        </View>
+        <TouchableHighlight style={styles.button}
               underlayColor='#99d9f4'>
             <Text
               style={styles.buttonText}
               onPress={this.goToHomepage.bind(this)}>
-              Go
+              Register!
             </Text>
           </TouchableHighlight>
-        </View>
       </View>
     );
   }
@@ -141,10 +158,15 @@ var styles = StyleSheet.create({
     textAlign: 'center',
     color: '#656565'
   },
+  normal: {
+    marginBottom: 16,
+    fontSize: 19,
+    color: '#000000'
+  },
   container: {
     padding: 30,
     marginTop: 65,
-    alignItems: 'center'
+    alignItems: 'flex-start'
   },
   flowRight: {
     flexDirection: 'row',
@@ -157,9 +179,19 @@ var styles = StyleSheet.create({
     alignSelf: 'center'
   },
   button: {
+    width: 310,
     height: 36,
-    flex: 1,
-    flexDirection: 'row',
+    backgroundColor: '#48BBEC',
+    borderColor: '#48BBEC',
+    borderWidth: 1,
+    borderRadius: 8,
+    marginBottom: 10,
+    alignSelf: 'stretch',
+    justifyContent: 'center'
+  },
+  lbutton: {
+    width: 310,
+    height: 36,
     backgroundColor: '#48BBEC',
     borderColor: '#48BBEC',
     borderWidth: 1,
@@ -172,6 +204,7 @@ var styles = StyleSheet.create({
     height: 36,
     padding: 4,
     marginRight: 5,
+    marginBottom: 15,
     flex: 4,
     fontSize: 18,
     borderWidth: 1,
@@ -183,6 +216,7 @@ var styles = StyleSheet.create({
     height: 36,
     padding: 4,
     marginRight: 5,
+    marginBottom: 15,
     flex: 4,
     fontSize: 18,
     borderWidth: 1,

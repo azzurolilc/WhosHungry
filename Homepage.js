@@ -89,6 +89,11 @@ class Homepage extends React.Component {
           scrollEventThrottle={200}
           style={styles.scrollView}>
           {THUMBS.map(createThumbRow)}
+          <TouchableOpacity
+            style={styles.buttonProvide}
+            onPress={this.goToPropertyView.bind(this)}>
+            <Text>Provide Food?</Text>
+          </TouchableOpacity>
         </ScrollView>
         <View>
           <TouchableOpacity

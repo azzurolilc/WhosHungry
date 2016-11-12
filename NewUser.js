@@ -17,7 +17,6 @@ import {
 } from 'react-native';
 
 var Homepage = require('./Homepage');
-var NewUser = require('./NewUser');
 var ReactNative = require('react-native');
 
 function urlForQueryAndPage(key, value, pageNumber) {
@@ -39,13 +38,11 @@ function urlForQueryAndPage(key, value, pageNumber) {
 };
 
 
-class Registration extends React.Component {
+class NewUser extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchString: 'london',
-      isLoading: false,
-      message: ''
+      
     };
   }
 
@@ -109,18 +106,11 @@ class Registration extends React.Component {
       });
   }
 
-  goToNewUser() {
-    this.props.navigator.replace({
-        title: 'New User',
-        component: NewUser
-      });
-  }
-
   render() {
     return (
       <View style={styles.container}>
         <Text style={styles.description}>
-          Log In To Get Food!
+          Register with your email address ~
         </Text>
         <View style={styles.flowRight}>
           <TextInput
@@ -130,8 +120,7 @@ class Registration extends React.Component {
             secureTextEntry={true}
             style={styles.passwordInput}
             placeholder='Password'/>
-        </View>
-        <TouchableHighlight style={styles.button}
+          <TouchableHighlight style={styles.button}
               underlayColor='#99d9f4'>
             <Text
               style={styles.buttonText}
@@ -139,14 +128,7 @@ class Registration extends React.Component {
               Go
             </Text>
           </TouchableHighlight>
-          <TouchableHighlight style={styles.lbutton}
-              underlayColor='#99d9f4'>
-            <Text
-              style={styles.buttonText}
-              onPress={this.goToNewUser.bind(this)}>
-              Register New User!
-            </Text>
-          </TouchableHighlight>
+        </View>
       </View>
     );
   }
@@ -175,19 +157,9 @@ var styles = StyleSheet.create({
     alignSelf: 'center'
   },
   button: {
-    width: 310,
     height: 36,
-    backgroundColor: '#48BBEC',
-    borderColor: '#48BBEC',
-    borderWidth: 1,
-    borderRadius: 8,
-    marginBottom: 10,
-    alignSelf: 'stretch',
-    justifyContent: 'center'
-  },
-  lbutton: {
-    width: 310,
-    height: 36,
+    flex: 1,
+    flexDirection: 'row',
     backgroundColor: '#48BBEC',
     borderColor: '#48BBEC',
     borderWidth: 1,
@@ -200,7 +172,6 @@ var styles = StyleSheet.create({
     height: 36,
     padding: 4,
     marginRight: 5,
-    marginBottom: 15,
     flex: 4,
     fontSize: 18,
     borderWidth: 1,
@@ -212,7 +183,6 @@ var styles = StyleSheet.create({
     height: 36,
     padding: 4,
     marginRight: 5,
-    marginBottom: 15,
     flex: 4,
     fontSize: 18,
     borderWidth: 1,
@@ -226,4 +196,4 @@ var styles = StyleSheet.create({
   }
 });
 
-module.exports = Registration;
+module.exports = NewUser;

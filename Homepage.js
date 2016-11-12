@@ -81,6 +81,13 @@ class Homepage extends React.Component {
             <Text>Provide Food?</Text>
           </TouchableOpacity>
         </View>
+        <View>
+          <TouchableOpacity
+            style={styles.buttonEat}
+            onPress={() => { _scrollView.scrollTo({y: 0}); }}>
+            <Text>Eat!</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }

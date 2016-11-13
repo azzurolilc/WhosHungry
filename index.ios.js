@@ -22,7 +22,7 @@ class WhosHungry extends React.Component {
       <ReactNative.NavigatorIOS
         style={styles.container}
         initialRoute={{
-          title: 'Who is hungry?',
+          title: 'WhosHungry?',
           component: Registration,
         }}/>
     );

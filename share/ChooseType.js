@@ -6,6 +6,7 @@ import {
   Text,
   TextInput,
   TouchableHighlight,
+  TouchableOpacity,
   ActivityIndicator,
   View,
   Image,
@@ -21,6 +22,10 @@ class SliderExample extends React.Component {
     value: 1,
   };
 
+  static maximumValue = {
+    value: 25
+  };
+
   state = {
     value: this.props.value,
   };
@@ -28,8 +33,8 @@ class SliderExample extends React.Component {
   render() {
     return (
       <View>
-        <Text style={styles.text} >
-          {this.state.value && +this.state.value.toFixed(3)}
+        <Text style={styles.description1} >
+          {this.state.value && +this.state.value.toFixed(1)}
         </Text>
         <Slider
           {...this.props}
@@ -38,8 +43,6 @@ class SliderExample extends React.Component {
     );
   }
 }
-
-
 
 function urlForQueryAndPage(key, value, pageNumber) {
   var data = {
@@ -71,7 +74,8 @@ class ChooseType extends React.Component {
     this.state = {
       searchString: 'london',
       isLoading: false,
-      message: ''
+      message: '',
+      address: "",
     };
   }
 
@@ -128,13 +132,6 @@ class ChooseType extends React.Component {
       });
   }
 
-  goToHomepage() {
-    this.props.navigator.replace({
-        title: 'Homepage',
-        component: Homepage
-      });
-  }
-
   goToPhotoSnap() {
     this.props.navigator.replace({
         title: 'Snap Food',
@@ -146,13 +143,14 @@ class ChooseType extends React.Component {
     console.log("You tapped the button!");
   }
 
+  _handlePress(event) {
+    let address = this.state.address;
+
+  }
 
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.description}>
-          Food Description
-        </Text>
         <View style={{flex: 1, flexDirection: 'row',justifyContent: 'space-around',alignItems: 'center'}}>
           <TouchableHighlight style={{height: 80,  justifyContent: 'flex-start'}}>
             <Image
@@ -163,7 +161,7 @@ class ChooseType extends React.Component {
           <TouchableHighlight style={{height: 80}}>
             <Image
               style={styles.image}
-              source={require('../img/boiled-egg.png')}
+              source={require('../img/toast.png')}
             />
           </TouchableHighlight>
           <TouchableHighlight style={{ height: 80,justifyContent: 'flex-end'}}>
@@ -193,26 +191,44 @@ class ChooseType extends React.Component {
             />
           </TouchableHighlight>
         </View>
+
         <View style={styles.flowRight}>
           <TextInput
             style={styles.searchInput}
-            placeholder='Name'/>
+            placeholder='Description of Food'/>
         </View>
         <View style={styles.flowRight}>
           <TextInput
             secureTextEntry={true}
             style={styles.passwordInput}
-            placeholder='Expiration Date'/>
+            placeholder='Expiration Date (MM/DD/YY)'/>
         </View>
 
         <View style={styles.flowRight}>
+        <Text style={styles.description}>
+          Food Description
+        </Text>
           <SliderExample
             onSlidingComplete={(value) => this.setState({
                 slideCompletionValue: value,
                 step: 20,
                 slideCompletionCount: this.state.slideCompletionCount})} />
-
         </View>
+
+        <View style={styles.flowRight}>
+          <TextInput
+            ref = "address"
+            onChangeText={(address)=>this.setState({address})}
+            style={styles.searchInput}
+            placeholder='Address'/>
+            <TouchableOpacity style={{ height: 30 ,justifyContent: 'flex-end'}} onPress={this._handlePress.bind(this)}>
+            <Image
+              style={{height:50, width: 50}}
+              source={require('../img/01location.png')}
+            />
+            </TouchableOpacity>
+        </View>
+
           <TouchableHighlight style={styles.lbutton}
               underlayColor='#99d9f4'>
             <Text
@@ -230,7 +246,13 @@ var styles = StyleSheet.create({
   description: {
     marginBottom: 20,
     fontSize: 18,
-    textAlign: 'center',
+    textAlign: 'left',
+    color: '#656565'
+  },
+  description1: {
+    marginBottom: 20,
+    fontSize: 18,
+    textAlign: 'right',
     color: '#656565'
   },
   container: {

@@ -67,7 +67,7 @@ class Homepage extends React.Component {
 
   goToChooseType() {
     this.props.navigator.push({
-        title: 'Provide Food',
+        title: 'Food Description',
         component: ChooseType
       });
   }
@@ -82,7 +82,7 @@ class Homepage extends React.Component {
           onScroll={() => { console.log('onScroll!'); }}
           scrollEventThrottle={200}
           style={styles.scrollView}>
-          
+
           {THUMBS.map(createThumbRow)}
 
         </ScrollView>
@@ -110,11 +110,11 @@ var pressed = 0;
 var carttext = "You choosed: ";
 
 class Thumb extends React.Component {
-  
+
   shouldComponentUpdate(nextProps, nextState) {
     return false;
   }
-  
+
   constructor(props) {
   super(props);
   this.state = { carttext: "You choosed: ", egg: false};
@@ -125,14 +125,22 @@ class Thumb extends React.Component {
     switch (i) {
       case 0: var icon = true ? require('./img/apple.png') : require('./apple-icon.png');
       break;
-      case 1: var icon = true ? require('./Coca-Cola-icon.png') : require('./Coca-Cola-icon.png');
+      case 1: var icon = true ? require('./img/doughnut.png') : require('./Coca-Cola-icon.png');
       break;
-      case 2: var icon = true ? require('./chicken-icon.png') : require('./apple-icon.png');
+      case 2: var icon = true ? require('./img/chicken-leg.png') : require('./apple-icon.png');
       break;
-      case 3: var icon = true ? require('./capsicum-icon.png') : require('./Coca-Cola-icon.png');
+      case 3: var icon = true ? require('./img/carrot.png') : require('./Coca-Cola-icon.png');
+      break;
+      case 4: var icon = true ? require('./img/banana.png') : require('./apple-icon.png');
+      break;
+      case 5: var icon = true ? require('./img/cookie.png') : require('./Coca-Cola-icon.png');
+      break;
+      case 6: var icon = true ? require('./img/fish.png') : require('./apple-icon.png');
+      break;
+      case 7: var icon = true ? require('./img/salad.png') : require('./Coca-Cola-icon.png');
       break;
     }
-    
+
     return (
       <View style={styles.button}>
       <TouchableOpacity onPress={(carttext) => this.setState({carttext: "item1"})} selected={this.state.egg} >
@@ -146,8 +154,16 @@ class Thumb extends React.Component {
   }
 }
 
-var foodData = ['Fruit: \n fresh apples (5)', 'Doughnut:\n chocolate falvor (3)', 'Meat:\n chicken breast (4 lbs)', 'Vegatable:\n fresh carrot (2 lbs)', 'Candy:\n fruit falvor (1 big bag)', 'Meat:\n fish(4 lbs)', 'Vegatable:\n fresh patato (2 lbs)'];
-var THUMBS = ['./img/apple.png', './img/doughnut.png', './img/chicken-leg.png', './img/salad.png', './img/doughnut.png', './img/chicken-leg.png', './img/salad.png'];
+var foodData = ['Fruit: \n fresh apples (5)'
+                , 'Doughnut:\n chocolate falvor (3)'
+                , 'Meat:\n chicken breast (4 lbs)'
+                , 'Vegatable:\n fresh carrot (2 lbs)'
+                , 'Fruit: \n bananas (3)'
+                , 'Cookie:\n white chocolate (12 pc)'
+                , 'Meat:\n fish(4 lbs)'
+                , 'Vegatable:\n fresh patato (2 lbs)'];
+var THUMBS = ['./img/apple.png'
+              , './img/doughnut.png', './img/chicken-leg.png', './img/salad.png', './img/doughnut.png', './img/chicken-leg.png', './img/salad.png'];
 var createThumbRow = (uri, i) => <Thumb key={i} uri={uri} />;
 
 var styles = StyleSheet.create({

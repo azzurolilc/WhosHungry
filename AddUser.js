@@ -4,6 +4,8 @@ var mongoose = require('mongoose')
   , DB = require('./config/db')
   ;
 
+//mongo ds151707.mlab.com:51707/azl -u admin -p deltasquad
+
 function AddUser(name,password,email,lon,lat){
   mongoose.connect(DB.URI, function () {
     var user = new User();

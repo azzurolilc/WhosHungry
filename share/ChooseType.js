@@ -206,7 +206,7 @@ class ChooseType extends React.Component {
 
         <View style={styles.flowRight}>
         <Text style={styles.description}>
-          Food Description
+          Amount
         </Text>
           <SliderExample
             onSlidingComplete={(value) => this.setState({

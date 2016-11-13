@@ -16,6 +16,7 @@ import {
   TouchableOpacity,
   ActivityIndicator,
   ListView,
+  PropTypes,
   ScrollView,
   View
 } from 'react-native';
@@ -23,7 +24,6 @@ import {
 var MapView = require('./MapCheck');
 var ReactNative = require('react-native');
 var ChooseType = require('./share/ChooseType');
-var PropertyView = require('./PropertyView');
 
 class Homepage extends React.Component {
   constructor(props) {
@@ -32,6 +32,7 @@ class Homepage extends React.Component {
       flexDirection: 'row',
       justifyContent: 'center',
       alignItems: 'center',
+      pressStatus: false ,
     }
   }
 
@@ -71,13 +72,6 @@ class Homepage extends React.Component {
       });
   }
 
-  goToPropertyView() {
-    this.props.navigator.push({
-        title: 'Food Detail',
-        component: PropertyView
-      });
-  }
-
   render() {
     var _scrollView: ScrollView;
     return (
@@ -88,12 +82,9 @@ class Homepage extends React.Component {
           onScroll={() => { console.log('onScroll!'); }}
           scrollEventThrottle={200}
           style={styles.scrollView}>
+          
           {THUMBS.map(createThumbRow)}
-          <TouchableOpacity
-            style={styles.buttonProvide}
-            onPress={this.goToPropertyView.bind(this)}>
-            <Text>Provide Food?</Text>
-          </TouchableOpacity>
+
         </ScrollView>
         <View>
           <TouchableOpacity
@@ -114,21 +105,47 @@ class Homepage extends React.Component {
   }
 }
 
+var i = 0;
+var pressed = 0;
+
 class Thumb extends React.Component {
+  
   shouldComponentUpdate(nextProps, nextState) {
-    return true;
+    return false;
+  }
+  
+  foodPress() {
+    pressed = 1;
   }
 
   render() {
+    switch (i) {
+      case 0: var icon = true ? require('./apple-icon.png') : require('./apple-icon.png');
+      break;
+      case 1: var icon = true ? require('./Coca-Cola-icon.png') : require('./Coca-Cola-icon.png');
+      break;
+      case 2: var icon = true ? require('./chicken-icon.png') : require('./apple-icon.png');
+      break;
+      case 3: var icon = true ? require('./capsicum-icon.png') : require('./Coca-Cola-icon.png');
+      break;
+    }
+    
     return (
       <View style={styles.button}>
-        <Image style={styles.img} source={{uri:this.props.uri}} />
+      <TouchableHighlight onPress={this.foodPress.bind(this)}>
+        <View>
+        <Text style={ pressed==0 ? styles.imgtext : {} }>{foodData[i++]}</Text>
+        </View>
+        </TouchableHighlight>
+
+        <Image style={styles.img} source={icon} />
       </View>
     );
   }
 }
 
-var THUMBS = ['http://kingrichiespizza.com/wp-content/uploads/2015/12/d5a3498cfc9e53130b5f815ef44713b7_Jet.jpg', 'https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-prn1/t39.1997/p128x128/851561_767334496626293_1958532586_n.png', 'https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-ash3/t39.1997/p128x128/851579_767334503292959_179092627_n.png', 'https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-prn1/t39.1997/p128x128/851589_767334513292958_1747022277_n.png', 'https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-prn1/t39.1997/p128x128/851563_767334559959620_1193692107_n.png', 'https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-prn1/t39.1997/p128x128/851593_767334566626286_1953955109_n.png', 'https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-prn1/t39.1997/p128x128/851591_767334523292957_797560749_n.png', 'https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-prn1/t39.1997/p128x128/851567_767334529959623_843148472_n.png', 'https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-prn1/t39.1997/p128x128/851548_767334489959627_794462220_n.png', 'https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-prn1/t39.1997/p128x128/851575_767334539959622_441598241_n.png', 'https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-ash3/t39.1997/p128x128/851573_767334549959621_534583464_n.png', 'https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-prn1/t39.1997/p128x128/851583_767334573292952_1519550680_n.png'];
+var foodData = ['Fruit: \n fresh apples (5)', 'Soda:\n Zero (3)', 'Meat:\n chicken breast (4 lbs)', 'Vegatable:\n fresh carrot (2 lbs)', 'You choosed: item 1'];
+var THUMBS = ['./apple-icon.png', './Coca-Cola-icon.png', './chicken-icon.png', './capsicum-icon.png', './cart.png'];
 var createThumbRow = (uri, i) => <Thumb key={i} uri={uri} />;
 
 var styles = StyleSheet.create({
@@ -157,9 +174,10 @@ var styles = StyleSheet.create({
   button: {
     margin: 7,
     padding: 5,
-    alignItems: 'center',
+    //alignItems: 'center',
     backgroundColor: '#ecffc6',
     borderRadius: 3,
+    flexWrap: 'wrap',
   },
   buttonScroll: {
     marginTop: 10,
@@ -206,7 +224,19 @@ var styles = StyleSheet.create({
   img: {
     width: 64,
     height: 64,
-  }
+    marginLeft: 10,
+    flex: 1,
+    marginTop:-50,
+  },
+  imgtext: {
+    fontFamily: 'Helvetica',
+    flex: 0,
+    textAlign: 'center',
+    marginTop:20,
+  },
+  textpress: {
+    fontSize:30,
+  },
 });
 
 module.exports = Homepage;

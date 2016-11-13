@@ -107,6 +107,7 @@ class Homepage extends React.Component {
 
 var i = 0;
 var pressed = 0;
+var carttext = "You choosed: ";
 
 class Thumb extends React.Component {
   
@@ -114,13 +115,15 @@ class Thumb extends React.Component {
     return false;
   }
   
-  foodPress() {
-    pressed = 1;
+  constructor(props) {
+  super(props);
+  this.state = { carttext: "You choosed: ", egg: false};
   }
+
 
   render() {
     switch (i) {
-      case 0: var icon = true ? require('./apple-icon.png') : require('./apple-icon.png');
+      case 0: var icon = true ? require('./img/apple.png') : require('./apple-icon.png');
       break;
       case 1: var icon = true ? require('./Coca-Cola-icon.png') : require('./Coca-Cola-icon.png');
       break;
@@ -132,20 +135,19 @@ class Thumb extends React.Component {
     
     return (
       <View style={styles.button}>
-      <TouchableHighlight onPress={this.foodPress.bind(this)}>
+      <TouchableOpacity onPress={(carttext) => this.setState({carttext: "item1"})} selected={this.state.egg} >
         <View>
-        <Text style={ pressed==0 ? styles.imgtext : {} }>{foodData[i++]}</Text>
+        <Text style={ this.props.selected ? styles.img : styles.imgtext }>{foodData[i++]}</Text>
         </View>
-        </TouchableHighlight>
-
+        </TouchableOpacity>
         <Image style={styles.img} source={icon} />
       </View>
     );
   }
 }
 
-var foodData = ['Fruit: \n fresh apples (5)', 'Soda:\n Zero (3)', 'Meat:\n chicken breast (4 lbs)', 'Vegatable:\n fresh carrot (2 lbs)', 'You choosed: item 1'];
-var THUMBS = ['./apple-icon.png', './Coca-Cola-icon.png', './chicken-icon.png', './capsicum-icon.png', './cart.png'];
+var foodData = ['Fruit: \n fresh apples (5)', 'Doughnut:\n chocolate falvor (3)', 'Meat:\n chicken breast (4 lbs)', 'Vegatable:\n fresh carrot (2 lbs)', 'Candy:\n fruit falvor (1 big bag)', 'Meat:\n fish(4 lbs)', 'Vegatable:\n fresh patato (2 lbs)'];
+var THUMBS = ['./img/apple.png', './img/doughnut.png', './img/chicken-leg.png', './img/salad.png', './img/doughnut.png', './img/chicken-leg.png', './img/salad.png'];
 var createThumbRow = (uri, i) => <Thumb key={i} uri={uri} />;
 
 var styles = StyleSheet.create({

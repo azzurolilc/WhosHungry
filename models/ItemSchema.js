@@ -3,7 +3,7 @@ var mongoose = require('mongoose'),
 
 var itemSchema = mongoose.Schema({
   name: String,
-  photo: Schema.ObjectId,
+  photo: String,
   amount: {
     number: Number,
     unit: String

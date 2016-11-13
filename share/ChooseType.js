@@ -14,12 +14,11 @@ import {
 
 var ReactNative = require('react-native');
 var Homepage = require('../Homepage');
-var NewUser = require('../NewUser');
-// var ReactNative = require('react-native');
+var PhotoSnap = require('./PhotoSnap');
 
 class SliderExample extends React.Component {
   static defaultProps = {
-    value: 0,
+    value: 1,
   };
 
   state = {
@@ -136,12 +135,17 @@ class ChooseType extends React.Component {
       });
   }
 
-  goToNewUser() {
+  goToPhotoSnap() {
     this.props.navigator.replace({
-        title: 'New User',
-        component: NewUser
+        title: 'Snap Food',
+        component: PhotoSnap
       });
   }
+
+  _onPressButton() {
+    console.log("You tapped the button!");
+  }
+
 
   render() {
     return (
@@ -149,6 +153,46 @@ class ChooseType extends React.Component {
         <Text style={styles.description}>
           Food Description
         </Text>
+        <View style={{flex: 1, flexDirection: 'row',justifyContent: 'space-around',alignItems: 'center'}}>
+          <TouchableHighlight style={{height: 80,  justifyContent: 'flex-start'}}>
+            <Image
+              style={styles.image}
+              source={require('../img/apple.png')}
+            />
+          </TouchableHighlight>
+          <TouchableHighlight style={{height: 80}}>
+            <Image
+              style={styles.image}
+              source={require('../img/boiled-egg.png')}
+            />
+          </TouchableHighlight>
+          <TouchableHighlight style={{ height: 80,justifyContent: 'flex-end'}}>
+            <Image
+              style={styles.image}
+              source={require('../img/salad.png')}
+            />
+          </TouchableHighlight>
+        </View>
+        <View style={{flex: 1, flexDirection: 'row',alignItems: 'center'}}>
+          <TouchableHighlight style={{  height: 80,justifyContent: 'flex-start'}}>
+            <Image
+              style={styles.image}
+              source={require('../img/chicken-leg.png')}
+            />
+          </TouchableHighlight>
+          <TouchableHighlight style={{  height: 80}}>
+            <Image
+              style={styles.image}
+              source={require('../img/doughnut.png')}
+            />
+          </TouchableHighlight>
+          <TouchableHighlight style={{ height: 80 ,justifyContent: 'flex-end'}}>
+            <Image
+              style={styles.image}
+              source={require('../img/fish.png')}
+            />
+          </TouchableHighlight>
+        </View>
         <View style={styles.flowRight}>
           <TextInput
             style={styles.searchInput}
@@ -158,32 +202,23 @@ class ChooseType extends React.Component {
           <TextInput
             secureTextEntry={true}
             style={styles.passwordInput}
-            placeholder='Amount'/>
+            placeholder='Expiration Date'/>
         </View>
 
         <View style={styles.flowRight}>
           <SliderExample
-            {...this.props}
             onSlidingComplete={(value) => this.setState({
                 slideCompletionValue: value,
-                step: 2,
+                step: 20,
                 slideCompletionCount: this.state.slideCompletionCount})} />
 
         </View>
-        <TouchableHighlight style={styles.button}
-              underlayColor='#99d9f4'>
-            <Text
-              style={styles.buttonText}
-              onPress={this.goToHomepage.bind(this)}>
-              Go
-            </Text>
-          </TouchableHighlight>
           <TouchableHighlight style={styles.lbutton}
               underlayColor='#99d9f4'>
             <Text
               style={styles.buttonText}
-              onPress={this.goToNewUser.bind(this)}>
-              Register New User!
+              onPress={this.goToPhotoSnap.bind(this)}>
+              Snap It!
             </Text>
           </TouchableHighlight>
       </View>
@@ -202,7 +237,8 @@ var styles = StyleSheet.create({
     padding: 30,
     marginTop: 65,
     alignItems: 'center',
-    flex: 1
+    flex: 1,
+    justifyContent: 'center'
   },
   flowRight: {
     flexDirection: 'row',
@@ -262,8 +298,8 @@ var styles = StyleSheet.create({
     color: '#48BBEC'
   },
   image: {
-    width: 217,
-    height: 138
+    width: 75,
+    height: 75
   },
   slider: {
     height: 10,

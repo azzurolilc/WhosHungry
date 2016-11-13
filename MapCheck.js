@@ -3,7 +3,7 @@
  * https://github.com/facebook/react-native
  * @flow
  */
-'use strict';
+ 'use strict';
 
 import React, { Component } from 'react';
 //import file from './locationdata.json';
@@ -16,6 +16,7 @@ import {
   View,
   Dimensions,
   TouchableOpacity,
+  WebView,
 } from 'react-native';
 import MapView from 'react-native-maps';
 
@@ -26,6 +27,7 @@ const LONGITUDE = -86.8057;
 const LATITUDE_DELTA = 0.0922;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 let id = 0;
+var dirurl = 'https://www.google.com/maps/dir/36.1433,-86.8057/36.048970, -86.704875/36.113328,-86.745992';
 
 var Homepage = require('./Homepage');
 var ReactNative = require('react-native');
@@ -91,33 +93,46 @@ class MapCheck extends React.Component {
     });
   }
 
+  goToMapURL() {
+    this.props.navigator.push({
+        title: 'MapURL',
+        component: MapURL
+      });
+  }
+
+
   render() {
     return (
-      <View style = {styles.container}>
-        <MapView
-          style = {styles.map}
-          showsUserLocation = {true}
-          followUserLocation = {true}
-          zoomEnabled = {true}
-          initialRegion = {this.state.region}
-          onPress = {(e) => this.onMapPress(e)}
-        >
-          {this.state.markers.map(marker => (
-            <MapView.Marker
-              key = {marker.key}
-              coordinate = {marker.coordinate}
-            />
-          ))}
-        </MapView>
+      <WebView
+        source={{url: dirurl}}
+        style={{marginTop: 20}}
+      />
+      // <View style = {styles.container}>
+      //   <MapView
+      //     style = {styles.map}
+      //     showsUserLocation = {true}
+      //     followUserLocation = {true}
+      //     zoomEnabled = {true}
+      //     initialRegion = {this.state.region}
+      //     onPress = {(e) => this.onMapPress(e)}
+      //   >
+      //     {this.state.markers.map(marker => (
+      //       <MapView.Marker
+      //         key = {marker.key}
+      //         coordinate = {marker.coordinate}
+      //       />
+      //     ))}
+      //   </MapView>
 
-          <View style = {styles.buttonContainer}>
-            <TouchableOpacity
-              style = {[styles.bubble, styles.button]}
-            >
-            <Text>Animate</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
+      //     <View style = {styles.buttonContainer}>
+      //       <TouchableOpacity
+      //         onPress = {this.goToMapURL.bind(this)}
+      //         style = {[styles.bubble, styles.button]}
+      //       >
+      //       <Text>Animate</Text>
+      //     </TouchableOpacity>
+      //   </View>
+      // </View>
     )
   }
 }

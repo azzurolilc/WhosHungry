@@ -27,7 +27,7 @@ const LONGITUDE = -86.8057;
 const LATITUDE_DELTA = 0.0922;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 let id = 0;
-var dirurl = 'https://www.google.com/maps/dir/36.1433,-86.8057/36.048970, -86.704875/36.113328,-86.745992';
+var dirurl = 'https://www.google.com/maps/dir/36.1433,-86.8057/36.148970, -86.704875/36.113328,-86.70992';
 
 var Homepage = require('./Homepage');
 var ReactNative = require('react-native');

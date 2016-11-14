@@ -129,7 +129,7 @@ class Thumb extends React.Component {
       break;
       case 2: var icon = true ? require('./img/chicken-leg.png') : require('./apple-icon.png');
       break;
-      case 3: var icon = true ? require('./img/carrot.png') : require('./Coca-Cola-icon.png');
+      case 3: var icon = true ? require('./img/salad.png') : require('./Coca-Cola-icon.png');
       break;
       case 4: var icon = true ? require('./img/banana.png') : require('./apple-icon.png');
       break;

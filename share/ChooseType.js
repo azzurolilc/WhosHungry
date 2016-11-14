@@ -18,13 +18,17 @@ var Homepage = require('../Homepage');
 var PhotoSnap = require('./PhotoSnap');
 
 class SliderExample extends React.Component {
+  static minimumValue = {
+    value: 1
+  };
+  static maximumValue = {
+    value: 25
+  };
   static defaultProps = {
     value: 1,
   };
 
-  static maximumValue = {
-    value: 25
-  };
+
 
   state = {
     value: this.props.value,
@@ -152,44 +156,44 @@ class ChooseType extends React.Component {
     return (
       <View style={styles.container}>
         <View style={{flex: 1, flexDirection: 'row',justifyContent: 'space-around',alignItems: 'center'}}>
-          <TouchableHighlight style={{height: 80,  justifyContent: 'flex-start'}}>
+          <TouchableOpacity style={{height: 80,  justifyContent: 'flex-start'}}>
             <Image
               style={styles.image}
               source={require('../img/apple.png')}
             />
-          </TouchableHighlight>
-          <TouchableHighlight style={{height: 80}}>
+          </TouchableOpacity>
+          <TouchableOpacity style={{height: 80}}>
             <Image
               style={styles.image}
               source={require('../img/toast.png')}
             />
-          </TouchableHighlight>
-          <TouchableHighlight style={{ height: 80,justifyContent: 'flex-end'}}>
+          </TouchableOpacity>
+          <TouchableOpacity style={{ height: 80,justifyContent: 'flex-end'}}>
             <Image
               style={styles.image}
               source={require('../img/salad.png')}
             />
-          </TouchableHighlight>
+          </TouchableOpacity>
         </View>
         <View style={{flex: 1, flexDirection: 'row',alignItems: 'center'}}>
-          <TouchableHighlight style={{  height: 80,justifyContent: 'flex-start'}}>
+          <TouchableOpacity style={{  height: 80,justifyContent: 'flex-start'}}>
             <Image
               style={styles.image}
               source={require('../img/chicken-leg.png')}
             />
-          </TouchableHighlight>
-          <TouchableHighlight style={{  height: 80}}>
+          </TouchableOpacity>
+          <TouchableOpacity style={{  height: 80}}>
             <Image
               style={styles.image}
               source={require('../img/doughnut.png')}
             />
-          </TouchableHighlight>
-          <TouchableHighlight style={{ height: 80 ,justifyContent: 'flex-end'}}>
+          </TouchableOpacity>
+          <TouchableOpacity style={{ height: 80 ,justifyContent: 'flex-end'}}>
             <Image
               style={styles.image}
               source={require('../img/fish.png')}
             />
-          </TouchableHighlight>
+          </TouchableOpacity>
         </View>
 
         <View style={styles.flowRight}>
@@ -199,8 +203,7 @@ class ChooseType extends React.Component {
         </View>
         <View style={styles.flowRight}>
           <TextInput
-            secureTextEntry={true}
-            style={styles.passwordInput}
+            style={styles.searchInput}
             placeholder='Expiration Date (MM/DD/YY)'/>
         </View>
 
